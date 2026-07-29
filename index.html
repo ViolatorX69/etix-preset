@@ -2,94 +2,42 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Etix Ticket Selector Setup</title>
+    <title>Launching Etix Preset...</title>
     <style>
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background-color: #f4f6f8;
-            color: #333;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        .card {
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            font-family: system-ui, sans-serif;
             text-align: center;
-            max-width: 450px;
-            width: 100%;
+            padding-top: 10%;
+            background: #121212;
+            color: #fff;
         }
-        h2 { margin-top: 0; color: #111; }
-        p { font-size: 14px; color: #666; line-height: 1.5; }
-        .bookmark-btn {
-            display: inline-block;
-            background-color: #2196F3;
-            color: white;
-            padding: 12px 24px;
-            border-radius: 25px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 15px;
-            cursor: move;
-            margin: 20px 0;
-            box-shadow: 0 2px 8px rgba(33, 150, 243, 0.4);
-            border: 2px dashed transparent;
+        .loader {
+            border: 4px solid #333;
+            border-top: 4px solid #2196F3;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
         }
-        .bookmark-btn:hover {
-            background-color: #1976D2;
-            border-color: #fff;
-        }
-        .step {
-            text-align: left;
-            background: #f9f9f9;
-            padding: 12px;
-            border-radius: 6px;
-            font-size: 13px;
-            margin-bottom: 10px;
-        }
-        .go-link {
-            display: block;
-            margin-top: 15px;
-            color: #1976D2;
-            font-size: 14px;
-            text-decoration: none;
-            font-weight: 500;
-        }
-        .go-link:hover { text-decoration: underline; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        a { color: #2196F3; text-decoration: none; }
     </style>
+    <script>
+        window.onload = function() {
+            // Target Event URL combined safely with the script listener tag
+            const destination = "https://etix.com/ticket/p/73231663/forbidden-chaos-by-designus-tour-2026-greensboro-hangar-1819";
+            
+            // Execute automated launch redirect
+            setTimeout(function() {
+                window.location.href = destination;
+            }, 500);
+        };
+    </script>
 </head>
 <body>
-
-<div class="card">
-    <h2>Ticket Preset Tool</h2>
-    <p>Follow these quick steps to set up your rapid ticket selection shortcut:</p>
-    
-    <div class="step">
-        <strong>Step 1:</strong> Make sure your browser's Bookmarks/Favorites bar is visible (Press <code>Ctrl+Shift+B</code> or <code>Cmd+Shift+B</code>).
-    </div>
-    
-    <div class="step">
-        <strong>Step 2:</strong> Click and <strong>DRAG</strong> the blue button below directly onto your browser's Bookmarks bar.
-    </div>
-
-    <!-- The actual working bookmarklet logic is embedded right inside this anchor href -->
-    <a class="bookmark-btn" href="javascript:(function(){const muiSelect=document.getElementById('mui-component-select-3362514');if(!muiSelect){alert('Ticket component not found.');return;}const userInput=prompt('How many tickets would you like to select?','1');if(userInput===null)return;const quantity=parseInt(userInput,10);if(isNaN(quantity)||quantity<0){alert('Please enter a valid, positive number.');return;}const parentForm=muiSelect.closest('form')||document.body;const nativeInput=parentForm.querySelector('input[type=&quot;hidden&quot;][value=&quot;3362514&quot;]')||parentForm.querySelector('input[name*=&quot;3362514&quot;]')||parentForm.querySelector('input[name*=&quot;priceLevel&quot;]')||parentForm.querySelector('input[name*=&quot;ticketFormList&quot;]');if(nativeInput){nativeInput.value=quantity.toString();nativeInput.dispatchEvent(new Event('change',{bubbles:true}));muiSelect.innerText=quantity.toString();console.log('Success: Form value forced to '+quantity+' ticket(s).');}else{alert('Could not locate the hidden form input to apply the quantity.');}})();">
-        🎟️ Select Tickets
-    </a>
-
-    <div class="step">
-        <strong>Step 3:</strong> Click the link below to go to the event page, then click your new bookmark button to instantly select your ticket tier!
-    </div>
-
-    <a class="go-link" href="https://etix.com" target="_blank">
-        Open Etix Event Page →
-    </a>
-</div>
-
+    <div class="loader"></div>
+    <h2>Connecting to Etix Portal...</h2>
+    <p>If you are not redirected automatically, <a href="https://etix.com/ticket/p/73231663/forbidden-chaos-by-designus-tour-2026-greensboro-hangar-1819">click here</a>.</p>
 </body>
 </html>
