@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Launching Etix Ticket Assistant...</title>
+    <title>Etix Automated Launcher Dashboard</title>
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -16,42 +16,82 @@
             height: 100vh;
             margin: 0;
         }
-        .loader {
-            border: 4px solid #334155;
-            border-top: 4px solid #3b82f6;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
-            margin-bottom: 20px;
+        .control-panel {
+            background: #1e293b;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            border: 1px solid #334155;
+            max-width: 400px;
         }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-        h2 { font-size: 20px; margin: 0 0 10px 0; font-weight: 600; }
-        p { color: #94a3b8; font-size: 14px; margin: 0; }
-        a { color: #3b82f6; text-decoration: none; }
-        a:hover { text-decoration: underline; }
+        .btn {
+            background-color: #3b82f6;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 15px;
+            margin-top: 15px;
+        }
+        .btn:hover { background-color: #2563eb; }
+        p { color: #94a3b8; font-size: 14px; }
     </style>
 </head>
 <body>
 
-    <div class="loader"></div>
-    <h2>Connecting to Etix Portal...</h2>
-    <p>Forwarding to Forbidden Chaos Tour 2026. <a id="fallback" href="#">Click here if not redirected</a>.</p>
+<div class="control-panel">
+    <h2>Etix Direct Automation</h2>
+    <p>Click the button below to initialize the target portal session and load your external script module automatically.</p>
+    <button class="btn" onclick="launchAndInject()">Launch Ticket Portal</button>
+</div>
 
-    <script>
-        
-        <!-- 1. Launch the URL -->
-    window.location.href = "https://etix.com/ticket/p/73231663/forbidden-chaos-by-designus-tour-2026-greensboro-hangar-1819";
+<script>
+function launchAndInject() {
+    // Execution 1: Define the target configurations
+    const targetUrl = "https://www.etix.com/ticket/p/73231663/forbidden-chaos-by-designus-tour-2026-greensboro-hangar-1819";
+    
+    // Replace these placeholders with your actual GitHub deployment details
+    const githubUser = "ViolatorX69";
+    const githubRepo = "etix-preset";
+    const externalScriptUrl = `https://githubusercontent.com{ViolatorX69}/${githubRepo}/main/etix-injector.js`;
 
-    <!-- 2. Load and execute your external JavaScript file immediately after -->
-     <script src="etix-muiinjector.js"></script>
+    console.log("🚀 Launching window context...");
+    
+    // Execution 2: Open a clean browser window reference pointing to the Etix portal
+    const ticketWindow = window.open(targetUrl, '_blank');
 
-        // Update the fallback link just in case
-        document.getElementById('fallback').href = secureDestination;
+    // Execution 3: Inject and run the external .js file from GitHub upon window initiation
+    if (ticketWindow) {
+        // We use a periodic check loop to ensure the window container exists in the browser lifecycle
+        const checkWindowLoad = setInterval(() => {
+            try {
+                // Verify the child window document structure is accessible
+                if (ticketWindow.document && ticketWindow.document.body) {
+                    clearInterval(checkWindowLoad);
+                    
+                    console.log("⚡ Creating script element placeholder...");
+                    // Programmatically construct a clean HTML script element node
+                    const scriptElement = ticketWindow.document.createElement('script');
+                    scriptElement.type = 'text/javascript';
+                    scriptElement.src = externalScriptUrl;
 
-        // 3. Automatically redirect the browser to the target page with the script flag attached
-        window.location.href = secureDestination;
-    </script>
+                    // Append the external GitHub script asset directly into the target page session DOM
+                    ticketWindow.document.head.appendChild(scriptElement);
+                    console.log("✅ External GitHub script injected successfully into live session.");
+                }
+            } catch (securityError) {
+                // If the browser cross-origin policy blocks immediate tab-reading, the interval reports the state
+                console.log("⏳ Waiting for active browser context authorization...");
+            }
+        }, 100);
+    } else {
+        alert("Pop-up blocked! Please allow pop-ups for this domain to execute automation.");
+    }
+}
+</script>
 
 </body>
 </html>
