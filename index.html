@@ -2,42 +2,56 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Launching Etix Preset...</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Launching Etix Ticket Assistant...</title>
     <style>
         body {
-            font-family: system-ui, sans-serif;
-            text-align: center;
-            padding-top: 10%;
-            background: #121212;
-            color: #fff;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: #0f172a;
+            color: #f8fafc;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
         }
         .loader {
-            border: 4px solid #333;
-            border-top: 4px solid #2196F3;
+            border: 4px solid #334155;
+            border-top: 4px solid #3b82f6;
             border-radius: 50%;
             width: 40px;
             height: 40px;
             animation: spin 1s linear infinite;
-            margin: 20px auto;
+            margin-bottom: 20px;
         }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-        a { color: #2196F3; text-decoration: none; }
+        h2 { font-size: 20px; margin: 0 0 10px 0; font-weight: 600; }
+        p { color: #94a3b8; font-size: 14px; margin: 0; }
+        a { color: #3b82f6; text-decoration: none; }
+        a:hover { text-decoration: underline; }
     </style>
-    <script>
-        window.onload = function() {
-            // Target Event URL combined safely with the script listener tag
-            const destination = "https://etix.com/ticket/p/73231663/forbidden-chaos-by-designus-tour-2026-greensboro-hangar-1819";
-            
-            // Execute automated launch redirect
-            setTimeout(function() {
-                window.location.href = destination;
-            }, 500);
-        };
-    </script>
 </head>
 <body>
+
     <div class="loader"></div>
     <h2>Connecting to Etix Portal...</h2>
-    <p>If you are not redirected automatically, <a href="https://etix.com/ticket/p/73231663/forbidden-chaos-by-designus-tour-2026-greensboro-hangar-1819">click here</a>.</p>
+    <p>Forwarding to Forbidden Chaos Tour 2026. <a id="fallback" href="#">Click here if not redirected</a>.</p>
+
+    <script>
+        // 1. The target event page URL
+        const etixURL = "https://etix.com/ticket/p/73231663/forbidden-chaos-by-designus-tour-2026-greensboro-hangar-1819";
+        
+        // 2. We append a custom secure anchor hash tag (#preset) to the end of the URL.
+        // This acts as a safe flag that your browser extension (like Tampermonkey) can read upon arrival.
+        const secureDestination = etixURL + "#preset-quantity-3362514";
+
+        // Update the fallback link just in case
+        document.getElementById('fallback').href = secureDestination;
+
+        // 3. Automatically redirect the browser to the target page with the script flag attached
+        window.location.href = secureDestination;
+    </script>
+
 </body>
 </html>
