@@ -45,7 +45,7 @@
         
         // 2. We append a custom secure anchor hash tag (#preset) to the end of the URL.
         // This acts as a safe flag that your browser extension (like Tampermonkey) can read upon arrival.
-        const secureDestination = etixURL + <script src="etix-injector.js">
+        const secureDestination = etixURL + "etix-injector.js"
 
         // Update the fallback link just in case
         document.getElementById('fallback').href = secureDestination;
