@@ -39,13 +39,13 @@
     <p>Forwarding to Forbidden Chaos Tour 2026. <a id="fallback" href="#">Click here if not redirected</a>.</p>
 
     <script>
-        // 1. The target event page URL
-        const etixURL = "https://etix.com";
         
-        // 2. We append a custom secure anchor hash tag (#preset) to the end of the URL.
-        // This acts as a safe flag that your browser extension (like Tampermonkey) can read upon arrival.
-        const secureDestination = etixURL + "#preset-quantity-3362514";
+       <!-- 1. Load and execute your external JavaScript file -->
+    <script src="etix-muiinjector.js"></script>
 
+    <!-- 2. Launch the URL immediately after -->
+    <script>
+        window.location.href = "https://etix.com/ticket/p/73231663/forbidden-chaos-by-designus-tour-2026-greensboro-hangar-1819";
         // Update the fallback link just in case
         document.getElementById('fallback').href = secureDestination;
 
