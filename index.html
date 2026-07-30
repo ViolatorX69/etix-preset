@@ -40,12 +40,12 @@
 
     <script>
         
-       <!-- 1. Load and execute your external JavaScript file -->
-    <script src="etix-muiinjector.js"></script>
+        <!-- 1. Launch the URL -->
+    window.location.href = "https://etix.com/ticket/p/73231663/forbidden-chaos-by-designus-tour-2026-greensboro-hangar-1819";
 
-    <!-- 2. Launch the URL immediately after -->
-    <script>
-        window.location.href = "https://etix.com/ticket/p/73231663/forbidden-chaos-by-designus-tour-2026-greensboro-hangar-1819";
+    <!-- 2. Load and execute your external JavaScript file immediately after -->
+     <script src="etix-muiinjector.js"></script>
+
         // Update the fallback link just in case
         document.getElementById('fallback').href = secureDestination;
 
