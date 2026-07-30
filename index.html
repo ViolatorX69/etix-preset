@@ -44,7 +44,7 @@
         
         // 2. We append a custom secure anchor hash tag (#preset) to the end of the URL.
         // This acts as a safe flag that your browser extension (like Tampermonkey) can read upon arrival.
-        const secureDestination = etixURL + "javascript:(function(){const muiSelect=document.getElementById('mui-component-select-3362514');if(!muiSelect){alert('Ticket component not found.');return;}const userInput=prompt('How many tickets would you like to select?%27,%271%27);if(userInput===null)return;const quantity=parseInt(userInput,10);if(isNaN(quantity)||quantity<0){alert(%27Please enter a valid, positive number.%27);return;}const parentForm=muiSelect.closest(%27form%27)||document.body;const nativeInput=parentForm.querySelector(%27input[type="hidden"][value="3362514"]%27)||parentForm.querySelector(%27input[name*="3362514"]%27)||parentForm.querySelector(%27input[name*="priceLevel"]%27)||parentForm.querySelector(%27input[name*="ticketFormList"]%27);if(nativeInput){nativeInput.value=quantity.toString();nativeInput.dispatchEvent(new Event(%27change%27,{bubbles:true}));muiSelect.innerText=quantity.toString();console.log(%27Success: Form value forced to %27+quantity+%27 ticket(s).%27);}else{alert(%27Could not locate the hidden form input to apply the quantity.%27);}})();";
+        const secureDestination = etixURL + "etix-injector.js";
 
         // Update the fallback link just in case
         document.getElementById('fallback').href = secureDestination;
